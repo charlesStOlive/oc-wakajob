@@ -1,0 +1,3 @@
+1.0.1:
+    - Queue Jobs support
+    - create_jobs_table.php
