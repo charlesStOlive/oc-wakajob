@@ -76,14 +76,14 @@
         <table class="table">
             <thead>
                 <tr>
-                    <td style="width: 180px;"><?=e(trans('waka.wakajob::lang.report.key'));?></td>
-                    <td><?=e(trans('waka.wakajob::lang.report.value'))?></td>
+                    <td style="width: 180px;"><?=e(trans('waka.wakajob::lang.view.key'));?></td>
+                    <td><?=e(trans('waka.wakajob::lang.view.value'))?></td>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach($job->getMetadata() as $key => $value) { ?>
                 <tr>
-                    <td><?= $key ?></td>
+                    <td><?=e(trans($key))?></td>
                     <?php if(str_contains($value, 'http')) { ?>
                     <td><a
                            href="<?=$value?>"><?=e(trans($value))?></a>

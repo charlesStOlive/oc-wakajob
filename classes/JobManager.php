@@ -196,6 +196,7 @@ class JobManager
      */
     public function failJob(int $id, array $metadata = []): void
     {
+        trace_log("failed job");
         $toUpdate = [
             'status' => JobStatus::ERROR,
         ];

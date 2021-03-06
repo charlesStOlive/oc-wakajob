@@ -63,6 +63,15 @@ return [
         'stopped'                 => 'Arreté',
         'unknown'                 => 'Erreur inconnu',
     ],
+    'view' => [
+        "key" => "Clef",
+        "value" => "Valeur",
+    ],
+    'popup' => [
+        'confirm_title' => "Lot en cours de création",
+        'confirm_p' => 'Pour le voir cliquez',
+        'btn' => 'ici',
+    ],
     'listtoggle'  => [
         'title_true'  => 'Yes',
         'title_false' => 'No',
