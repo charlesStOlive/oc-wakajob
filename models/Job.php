@@ -75,4 +75,39 @@ class Job extends Model
     {
         return \in_array($this->status, [0, 1], true);
     }
+
+    public function getDateDiffAttribute()
+    {
+        if (!$this->started_at) {
+            return null;
+        }
+        if (!$this->end_at) {
+            return null;
+        }
+        return $this->started_at->diffInSeconds($this->end_at);
+    }
+
+    /**
+     * Scopes
+     */
+    public function scopeOnlyUser($query, $filter = true)
+    {
+        $user = \BackendAuth::getUser();
+        if (!$user || !$filter) {
+            return $query;
+        }
+        return $query->where('user_id', $user->id);
+    }
+    public function scopeState($query, $state)
+    {
+        if ($state == 'end') {
+            return $query->whereIn('status', [2,4]);
+        }
+        if ($state == 'error') {
+            return $query->where('status', 3);
+        }
+        if ($state == 'run') {
+            return $query->whereIn('status', [0,1]);
+        }
+    }
 }

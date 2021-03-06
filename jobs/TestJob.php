@@ -117,7 +117,7 @@ class TestJob implements WakajobQueueJob
             foreach ($data as $chunk) {
                 sleep(1);
                 foreach ($chunk as $data) {
-                    trace_log($data);
+                    //trace_log($data);
                     
                     if ($jobManager->checkIfCanceled($this->jobId)) {
                         $jobManager->failJob($this->jobId);

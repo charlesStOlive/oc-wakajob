@@ -5,6 +5,7 @@ use Backend\Classes\Controller;
 use Cms\Classes\ComponentBase;
 use Event;
 use Flash;
+use Lang;
 use Illuminate\Foundation\AliasLoader;
 use Waka\Wakajob\Classes\BackendInjector;
 use Waka\Wakajob\Classes\DependencyInjector;
@@ -16,7 +17,8 @@ use Waka\Wakajob\Classes\LaravelQueueClearServiceProvider;
 use System\Classes\PluginBase;
 use Waka\LaravelWakajob\LaravelWakajobServiceProvider;
 use October\Rain\Translation\Translator;
-use Waka\Wakajob\FormWidgets\KnobWidget;
+//use Waka\Wakajob\FormWidgets\KnobWidget;
+use \Waka\Utils\Models\Settings as UtilsSettings;
 
 /**
  * Wakajob Plugin Information File
@@ -71,22 +73,21 @@ class Plugin extends PluginBase
      */
     public function registerNavigation(): array
     {
+        $showNotification = true;
+
+        if (!UtilsSettings::get('activate_task_btn')) {
+            return [];
+        }
+
         return [
-            'wakajob' => [
-                'label'       => 'waka.wakajob::lang.labels.wakajob',
-                'url'         => Backend::url('waka/wakajob/jobs'),
-                'icon'        => 'icon-gears',
-                'iconSvg'     => 'plugins/waka/wakajob/assets/img/gear.svg',
-                'order'       => 500,
-                'permissions' => ['waka.wakajob.*'],
-                'sideMenu'    => [
-                    'jobs' => [
-                        'label'       => 'waka.wakajob::lang.labels.jobs',
-                        'icon'        => 'icon-gears',
-                        'url'         => Backend::url('waka/wakajob/jobs'),
-                        'permissions' => ['waka.wakajob.access_jobs'],
-                    ],
-                ],
+            'notification' => [
+                'label' => Lang::get("waka.utils::lang.menu.job_list_s"),
+                'url' => Backend::url('waka/wakajob/jobs'),
+                'icon' => 'icon-refresh',
+                'order' => 500,
+                'counter' => 0,
+                'permissions' => ['waka.jobList.*'],
+                'counterLabel' => Lang::get('waka.utils::lang.joblist.btn_counter_label'),
             ],
         ];
     }
@@ -176,85 +177,16 @@ class Plugin extends PluginBase
      */
     public function boot(): void
     {
-        //$translator = $this->app->make('translator');
-
-        // $this->app->when(Classes\TranslApiController::class)
-        //     ->needs(Translator::class)
-        //     ->give(
-        //         function () use ($translator) {
-        //             return $translator;
-        //         }
-        //     );
-
-        // $this->app->make('events')->listen(
-        //     'cms.page.initComponents',
-        //     function ($controller) {
-        //         foreach ($controller->vars as $variable) {
-        //             if ($variable instanceof ComponentBase) {
-        //                 $this->app->make('wakajob.dependencyInjector')->injectDependencies($variable);
-        //             }
-        //         }
-        //     }
-        // );
-
-        // $aliasLoader = AliasLoader::getInstance();
-        // $aliasLoader->alias('Resolver', Facades\Resolver::class);
-
-        // $injector = $this->app->make('wakajob.backend.injector');
-        // $injector->addCss('/plugins/waka/wakajob/assets/css/animate.css');
-
-        // Event::listen(
-        //     'backend.list.extendColumns',
-        //     function ($widget) {
-        //         foreach ($widget->config->columns as $name => $config) {
-        //             if (empty($config['type']) || $config['type'] !== 'listtoggle') {
-        //                 continue;
-        //             }
-        //             // Store field config here, before that unofficial fields was removed
-        //             ListToggle::storeFieldConfig($name, $config);
-        //             $column = [
-        //                 'clickable' => false,
-        //                 'type'      => 'listtoggle',
-        //             ];
-        //             if (isset($config['label'])) {
-        //                 $column['label'] = $config['label'];
-        //             }
-        //             // Set this column not clickable
-        //             // if other column with same field name exists configs are merged
-        //             $widget->addColumns(
-        //                 [
-        //                     $name => $column,
-        //                 ]
-        //             );
-        //         }
-        //     }
-        // );
         /**
-         * Switch a boolean value of a model field
-         * @return void
+         * POur le bouton des jobs
          */
-        Controller::extend(
-            function ($controller) {
-                $controller->addDynamicMethod(
-                    'index_onSwitchInetisListField',
-                    function () use ($controller) {
-                        $field = post('field');
-                        $id = post('id');
-                        $modelClass = post('model');
-                        if (empty($field) || empty($id) || empty($modelClass)) {
-                            Flash::error('Following parameters are required : id, field, model');
-
-                            return null;
-                        }
-                        $model = new $modelClass;
-                        $item = $model::find($id);
-                        $item->{$field} = !$item->{$field};
-                        $item->save();
-
-                        return $controller->listRefresh($controller->primaryDefinition);
-                    }
-                );
+        Event::listen('backend.page.beforeDisplay', function ($controller, $action, $params) {
+            $controller->addCss('/plugins/waka/utils/assets/css/notification.css');
+            $user = \BackendAuth::getUser();
+            if ($user->hasAccess('waka.jobList.*') && UtilsSettings::get('activate_task_btn')) {
+                // $pluginUrl = url('/plugins/waka/wakajob');
+                // \Block::append('body', '<script type="text/javascript" src="' . $pluginUrl . '/assets/js/backendnotifications.js"></script>');
             }
-        );
+        });
     }
 }

@@ -75,22 +75,24 @@
         <h4>Metadata</h4>
         <table class="table">
             <thead>
-            <tr>
-                <td style="width: 180px;">Key</td>
-                <td>Value</td>
-            </tr>
+                <tr>
+                    <td style="width: 180px;"><?=e(trans('waka.wakajob::lang.report.key'));?></td>
+                    <td><?=e(trans('waka.wakajob::lang.report.value'))?></td>
+                </tr>
             </thead>
             <tbody>
-            <?php foreach($job->getMetadata() as $key => $value) { ?>
-            <tr>
-                <td><?= $key ?></td>
-                <?php if(str_contains($value, 'http')) { ?>
-                <td><a href="<?= $value ?>"><?= $value ?></a></td>
-                <?php } else { ?>
-                <td><?= $value ?></td>
+                <?php foreach($job->getMetadata() as $key => $value) { ?>
+                <tr>
+                    <td><?= $key ?></td>
+                    <?php if(str_contains($value, 'http')) { ?>
+                    <td><a
+                           href="<?=$value?>"><?=e(trans($value))?></a>
+                    </td>
+                    <?php } else { ?>
+                    <td><?=e(trans($value))?></td>
+                    <?php } ?>
+                </tr>
                 <?php } ?>
-            </tr>
-            <?php } ?>
             </tbody>
         </table>
 
@@ -103,23 +105,23 @@
     <div class="loading-indicator-container">
         <?php if ($this->isSuperUser() && $job->canBeCanceled()): ?>
         <a
-                id="job-force-cancel-btn"
-                type="button"
-                data-request="onForceCancelJob"
-                data-request-data="id:<?= $job->id ?>"
-                data-load-indicator="Force canceling Job..."
-                class="btn btn-danger">
+           id="job-force-cancel-btn"
+           type="button"
+           data-request="onForceCancelJob"
+           data-request-data="id:<?= $job->id ?>"
+           data-load-indicator="Force canceling Job..."
+           class="btn btn-danger">
             Force cancel job
         </a>
         <?php endif ?>
         <?php if ($job->canBeCanceled()): ?>
         <a
-                id="job-cancel-btn"
-                type="button"
-                data-request="onCancelJob"
-                data-request-data="id:<?= $job->id ?>"
-                data-load-indicator="Canceling Job..."
-                class="btn btn-danger">
+           id="job-cancel-btn"
+           type="button"
+           data-request="onCancelJob"
+           data-request-data="id:<?= $job->id ?>"
+           data-load-indicator="Canceling Job..."
+           class="btn btn-danger">
             Cancel this job
         </a>
         <?php endif; ?>
@@ -135,10 +137,11 @@
 <?php endif ?>
 
 <style>
-    .title-value p.error-content {
-        font-weight: 300;
-        line-height: 100%;
-        font-size: 15px;
-        margin-top: 12px;
-    }
+.title-value p.error-content {
+    font-weight: 300;
+    line-height: 100%;
+    font-size: 15px;
+    margin-top: 12px;
+}
+
 </style>

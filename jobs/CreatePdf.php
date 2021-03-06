@@ -120,7 +120,7 @@ class CreatePdf implements WakajobQueueJob
                         $jobManager->failJob($this->jobId);
                         break;
                     }
-                    trace_log("I am creating a pdf man ! ");
+                    //trace_log("I am creating a pdf man ! ");
                     if ($this->updateExisting) {
                         // TODO !
                     }

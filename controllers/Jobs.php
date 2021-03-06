@@ -178,4 +178,9 @@ class Jobs extends Controller
         $jobManager = \App::make('Waka\Wakajob\Classes\JobManager');
         $jobManager->dispatch($job, 'Requests sending');
     }
+
+    public function index_onRefresh()
+    {
+        return $this->listRefresh();
+    }
 }
