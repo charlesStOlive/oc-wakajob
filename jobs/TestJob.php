@@ -90,7 +90,7 @@ class TestJob implements WakajobQueueJob
     {
         $this->data = $data;
         $this->updateExisting = true;
-        $this->chunk = 10;
+        $this->chunk = 1;
         /** @var Model $model */
         //$model = new $model();
         //$this->table = $model->getTable();
@@ -115,7 +115,6 @@ class TestJob implements WakajobQueueJob
         $data = array_chunk($this->data, $this->chunk);
         try {
             foreach ($data as $chunk) {
-                sleep(1);
                 foreach ($chunk as $data) {
                     //trace_log($data);
                     
@@ -123,10 +122,12 @@ class TestJob implements WakajobQueueJob
                         $jobManager->failJob($this->jobId);
                         break;
                     }
+                    $jobManager->updateJobState($this->jobId, $loop);
                     $entry = null;
                     if ($this->updateExisting) {
                         // TODO !
                     }
+                    sleep(1);
                     if (!$entry) {
                         ++$created;
                     } else {
@@ -141,8 +142,8 @@ class TestJob implements WakajobQueueJob
                 }
                 //\DB::table($this->table)->insert($toInsert);
                 $loop += $this->chunk;
-                $jobManager->updateJobState($this->jobId, $loop);
             }
+             $jobManager->updateJobState($this->jobId, $loop);
         } catch (\Exception $ex) {
             $jobManager->failJob($this->jobId, ['error' => $ex->getMessage()]);
         }

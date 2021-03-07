@@ -66,7 +66,7 @@ class Jobs extends Controller
             $this->fatalError = sprintf('Job with id .'.$id.' does not exist.');
         } else {
             $this->addJs('/plugins/waka/wakajob/assets/js/wakajob-jobs.js');
-            $this->pageTitle = 'Job '.$id.' - '.$job->label;
+            $this->pageTitle = 'Job '.$id.' - '.Lang::get($job->label);
             $this->vars['job'] = $job;
         }
     }
@@ -120,7 +120,7 @@ class Jobs extends Controller
                 }
             )
             ->toArray();
-
+            trace_log($jobs);
         return [
             'jobs' => $jobs,
         ];
@@ -171,16 +171,21 @@ class Jobs extends Controller
     public function onTest()
     {
         $data = [];
-        for ($i=0; $i<50; $i++) {
+        for ($i=0; $i<10; $i++) {
             $data[$i] = $i;
         }
         $job = new \Waka\Wakajob\Jobs\TestJob($data);
         $jobManager = \App::make('Waka\Wakajob\Classes\JobManager');
         $jobManager->dispatch($job, 'Requests sending');
+        return \Redirect::to(\Backend::url('waka/wakajob/jobs/view/' . $job->jobId));
     }
 
     public function index_onRefresh()
     {
         return $this->listRefresh();
+    }
+    public function onViewRefresh()
+    {
+        return \Redirect::refresh();
     }
 }

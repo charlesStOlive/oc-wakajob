@@ -11,22 +11,25 @@ columns:
         searchable: true
     label:
         label: Label
-        searchable: true
-    progress:
-        label: Progress
         type: partial
-        path: $/waka/wakajob/controllers/jobs/_list_progress.htm
+        path: $/waka/wakajob/controllers/jobs/_list_label.htm
         sortable: false
-    # is_canceled:
-    #     label: Canceled
-    #     type: listtoggle
-    #     readOnly: true
-    progress_current:
-        label: Curent Progress
-        invisible: true
-    progress_max:
-        label: Max progress
-        invisible: true
+        searchable: false
+    # progress:
+    #     label: Progress
+    #     type: partial
+    #     path: $/waka/wakajob/controllers/jobs/_list_progress.htm
+    #     sortable: false
+    # # is_canceled:
+    # #     label: Canceled
+    # #     type: listtoggle
+    # #     readOnly: true
+    # progress_current:
+    #     label: Curent Progress
+    #     invisible: true
+    # progress_max:
+    #     label: Max progress
+    #     invisible: true
     status:
         label: Status
         type: partial

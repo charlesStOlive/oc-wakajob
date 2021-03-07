@@ -1,26 +1,22 @@
 $(function () {
 
-    function getAllVisibleJobsElems()
-    {
+    function getAllVisibleJobsElems() {
         return $('[data-job-status]');
     }
 
-    function filterOnlyChangeableJobsElems(jobs)
-    {
+    function filterOnlyChangeableJobsElems(jobs) {
         return jobs.filter(function () {
             return $(this).data('job-status') < 2;
         });
     }
 
-    function mapJobsElemsToJobIds(jobs)
-    {
+    function mapJobsElemsToJobIds(jobs) {
         return jobs.map(function () {
             return $(this).data('job-id');
         });
     }
 
-    function setCurrentProgress(data)
-    {
+    function setCurrentProgress(data) {
         data.jobs.forEach(function (job) {
             var $status = $('[data-job-id="' + job.id + '"]');
             var $bar = $('[data-job-progress="' + job.id + '"]');
@@ -43,16 +39,17 @@ $(function () {
         });
     }
 
-    function refreshProgress()
-    {
+    function refreshProgress() {
+        console.log('refreshProgress')
         var allJobElements = getAllVisibleJobsElems();
         var jobsRequiringUpdate = mapJobsElemsToJobIds(filterOnlyChangeableJobsElems(allJobElements)).toArray();
 
         if (jobsRequiringUpdate.length > 0) {
-            $.request('onGetProgress', {data: {ids: jobsRequiringUpdate}, success: setCurrentProgress});
+            $.request('onGetProgress', { data: { ids: jobsRequiringUpdate }, success: setCurrentProgress });
         }
 
         allJobElements.toArray().forEach(function (jobElem) {
+            console.log($(jobElem));
             if ($(jobElem).data('job-status') > 1) {
                 var id = $(jobElem).data('job-id');
                 var $bar = $('[data-job-progress="' + id + '"]');
@@ -67,8 +64,7 @@ $(function () {
         nextRefreshCycle();
     }
 
-    function nextRefreshCycle()
-    {
+    function nextRefreshCycle() {
         setTimeout(refreshProgress, 1000);
     }
 

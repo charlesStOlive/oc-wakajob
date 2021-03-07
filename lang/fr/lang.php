@@ -66,6 +66,10 @@ return [
     'view' => [
         "key" => "Clef",
         "value" => "Valeur",
+        'status' => "Statut",
+        'created_at' => "Créer le",
+        'last_update' => "Derniere MAJ",
+        'actualise' => "Actualiser",
     ],
     'popup' => [
         'confirm_title' => "Lot en cours de création",

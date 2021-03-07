@@ -19,11 +19,11 @@
 
             <div class="scoreboard-item title-value">
                 <h4>Job</h4>
-                <p><?= $job->label ?></p>
+                <p><?= e(trans($job->label)) ?></p>
             </div>
 
             <div class="scoreboard-item title-value">
-                <h4>Status</h4>
+                <h4><?= e(trans('waka.wakajob::lang.view.status')) ?></h4>
                 <?php if ($job->status == \Waka\Wakajob\Contracts\JobStatus::ERROR): ?>
                 <p data-job-id="<?= $job->id ?>" data-job-status="<?= $job->status ?>" class="danger"><?= $job->
                     getStatus() ?></p>
@@ -45,9 +45,10 @@
             <?php endif; ?>
 
             <div class="scoreboard-item title-value pull-right">
-                <h4>Created at</h4>
+                <h4><?= e(trans('waka.wakajob::lang.view.created_at')) ?></h4>
                 <p><?= $job->created_at ?></p>
-                <p class="description">Last update: <?= $job->updated_at ?></p>
+                <p class="description"><?= e(trans('waka.wakajob::lang.view.last_update')) ?> : <?= $job->updated_at ?>
+                </p>
             </div>
         </div>
     </div>
