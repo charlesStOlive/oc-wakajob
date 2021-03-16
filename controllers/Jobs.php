@@ -120,7 +120,7 @@ class Jobs extends Controller
                 }
             )
             ->toArray();
-            trace_log($jobs);
+            //trace_log($jobs);
         return [
             'jobs' => $jobs,
         ];
