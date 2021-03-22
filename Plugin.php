@@ -97,18 +97,19 @@ class Plugin extends PluginBase
      */
     public function registerSettings(): array
     {
-        return [
-            'messaging' => [
-                'label'       => 'waka.wakajob::lang.settings.messaging-label',
-                'description' => 'waka.wakajob::lang.settings.messaging-description',
-                'category'    => 'Wakajob',
-                'icon'        => 'icon-globe',
-                'class'       => Models\Settings::class,
-                'permissions' => ['waka.wakajob.access_settings'],
-                'order'       => 500,
-                'keywords'    => 'messages flash notifications',
-            ],
-        ];
+        return [];
+        // return [
+        //     'messaging' => [
+        //         'label'       => 'waka.wakajob::lang.settings.messaging-label',
+        //         'description' => 'waka.wakajob::lang.settings.messaging-description',
+        //         'category'    => 'Wakajob',
+        //         'icon'        => 'icon-globe',
+        //         'class'       => Models\Settings::class,
+        //         'permissions' => ['waka.wakajob.access_settings'],
+        //         'order'       => 500,
+        //         'keywords'    => 'messages flash notifications',
+        //     ],
+        // ];
     }
 
     /**
