@@ -182,7 +182,7 @@ class Plugin extends PluginBase
          * POur le bouton des jobs
          */
         Event::listen('backend.page.beforeDisplay', function ($controller, $action, $params) {
-            $controller->addCss('/plugins/waka/utils/assets/css/notification.css');
+            //$controller->addCss('/plugins/waka/utils/assets/css/notification.css');
             $user = \BackendAuth::getUser();
             if ($user->hasAccess('waka.jobList.*') && UtilsSettings::get('activate_task_btn')) {
                 // $pluginUrl = url('/plugins/waka/wakajob');
