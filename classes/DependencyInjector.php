@@ -2,7 +2,7 @@
 
 use Illuminate\Contracts\Container\Container;
 use Waka\Wakajob\Contracts\NeedsDependencies;
-use October\Rain\Exception\ApplicationException;
+use Winter\Storm\Exception\ApplicationException;
 
 /**
  * Class DependencyInjector

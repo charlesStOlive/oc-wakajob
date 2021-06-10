@@ -1,6 +1,6 @@
 <?php namespace Waka\Wakajob\Models;
 
-use October\Rain\Database\Model;
+use Winter\Storm\Database\Model;
 
 /**
  * Settings Model

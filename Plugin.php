@@ -16,7 +16,7 @@ use Waka\Wakajob\Console\QueueClearCommand;
 use Waka\Wakajob\Classes\LaravelQueueClearServiceProvider;
 use System\Classes\PluginBase;
 use Waka\LaravelWakajob\LaravelWakajobServiceProvider;
-use October\Rain\Translation\Translator;
+use Winter\Storm\Translation\Translator;
 //use Waka\Wakajob\FormWidgets\KnobWidget;
 use \Waka\Utils\Models\Settings as UtilsSettings;
 
