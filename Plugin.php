@@ -73,43 +73,40 @@ class Plugin extends PluginBase
      */
     public function registerNavigation(): array
     {
-        $showNotification = true;
+        return [];
+        // $showNotification = true;
 
-        if (!UtilsSettings::get('activate_task_btn')) {
-            return [];
-        }
+        // if (!UtilsSettings::get('activate_task_btn')) {
+        //     return [];
+        // }
 
+        // return [
+        //     'notification' => [
+        //         'label' => Lang::get("waka.utils::lang.menu.job_list_s"),
+        //         'url' => Backend::url('waka/wakajob/jobs'),
+        //         'icon' => 'icon-refresh',
+        //         'order' => 500,
+        //         'counter' => 0,
+        //         'permissions' => ['waka.jobList.*'],
+        //         'counterLabel' => Lang::get('waka.utils::lang.joblist.btn_counter_label'),
+        //     ],
+        // ];
+    }
+
+    public function registerSettings()
+    {
         return [
             'notification' => [
                 'label' => Lang::get("waka.utils::lang.menu.job_list_s"),
-                'url' => Backend::url('waka/wakajob/jobs'),
+                'description' => Lang::get("waka.utils::lang.menu.job_list_s"),
+                'category' => Lang::get('waka.utils::lang.menu.settings_controle'),
                 'icon' => 'icon-refresh',
-                'order' => 500,
-                'counter' => 0,
+                'url' => Backend::url('waka/wakajob/jobs'),
+                'order' => 1,
                 'permissions' => ['waka.jobList.*'],
                 'counterLabel' => Lang::get('waka.utils::lang.joblist.btn_counter_label'),
-            ],
+            ]
         ];
-    }
-
-    /**
-     * @return array
-     */
-    public function registerSettings(): array
-    {
-        return [];
-        // return [
-        //     'messaging' => [
-        //         'label'       => 'waka.wakajob::lang.settings.messaging-label',
-        //         'description' => 'waka.wakajob::lang.settings.messaging-description',
-        //         'category'    => 'Wakajob',
-        //         'icon'        => 'icon-globe',
-        //         'class'       => Models\Settings::class,
-        //         'permissions' => ['waka.wakajob.access_settings'],
-        //         'order'       => 500,
-        //         'keywords'    => 'messages flash notifications',
-        //     ],
-        // ];
     }
 
     /**
