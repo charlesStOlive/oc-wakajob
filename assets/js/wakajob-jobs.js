@@ -40,7 +40,7 @@ $(function () {
     }
 
     function refreshProgress() {
-        console.log('refreshProgress')
+        //console.log('refreshProgress')
         var allJobElements = getAllVisibleJobsElems();
         var jobsRequiringUpdate = mapJobsElemsToJobIds(filterOnlyChangeableJobsElems(allJobElements)).toArray();
 
@@ -49,7 +49,7 @@ $(function () {
         }
 
         allJobElements.toArray().forEach(function (jobElem) {
-            console.log($(jobElem));
+            //console.log($(jobElem));
             if ($(jobElem).data('job-status') > 1) {
                 var id = $(jobElem).data('job-id');
                 var $bar = $('[data-job-progress="' + id + '"]');

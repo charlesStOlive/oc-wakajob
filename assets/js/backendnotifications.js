@@ -29,7 +29,7 @@
                 const btn_task = counterElement.parentElement;
                 const icone = counterElement.parentElement.querySelector("a span");
 
-                console.log(res)
+                //console.log(res)
 
                 // $allError = run == false && error == false;
                 // if ($allError) {
