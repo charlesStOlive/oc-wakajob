@@ -1,85 +1,47 @@
 <?php
 
 return [
-    'labels'      => [
-        'pluginName' => 'Business logic scenario processor',
-        'jobs'       => 'Jobs',
-        'wakajob'  => 'Wakajob',
-        'knobFormWidget' => 'Knob FormWidget',
-        'kFwDescription' => 'Presents numeric inputs as a knob',
+    "job" => [
+        "create_title" => "Create Job",
+        "label" => "Job",
+        "list_title" => "Manage Jobs",
+        "preview_title" => "Preview Job",
+        "update_title" => "Edit Job"
     ],
-    'errors'      => [
-        'pageWithComponentNotFound' => 'Component %s is not bound to any page in CMS.',
-        'parameterNotFound'         => 'Parameter %s was not found in component %s configuration.',
+    "jobs" => [
+        "complete" => "Terminé",
+        "delete_confirm" => "Voulez vous vraiment supprimer le JOB ?",
+        "delete_selected_confirm" => "Supprimer le Job selectioné ?",
+        "delete_selected_empty" => "Il n' y a pas de JOB à supprimer.",
+        "delete_selected_success" => "Le JOB a bien été supprimé",
+        "error" => "Planté !",
+        "in_progress" => "En cours",
+        "in_queue" => "En attente",
+        "menu_label" => "Jobs",
+        "return_to_list" => "Retour sur les Job",
+        "stopped" => "Arreté",
+        "unknown" => "Erreur inconnu"
     ],
-    'settings'    => [
-        'messaging-label'          => 'Notifications',
-        'messaging-description'    => 'Provides notifications messages engine',
-        'messaging-tab'            => 'Messaging',
-        'messaging-layout'         => 'Layout',
-        'messaging-openAnimation'  => 'Opening Animation',
-        'messaging-closeAnimation' => 'Closing Animation',
-        'messaging-theme'          => 'Theme',
-        'messaging-template'       => 'Template',
-        'messaging-timeout'        => 'Timeout',
-        'messaging-dismissQueue'   => 'Dismiss queue',
-        'messaging-force'          => 'Force',
-        'messaging-modal'          => 'Show as modal',
-        'messaging-maxVisible'     => 'Max visible time',
-        'messaging'                => 'Notifications',
+    "labels" => [
+        "knobFormWidget" => "Knob FormWidget"
     ],
-    'permissions' => [
-        'tab'             => 'Wakajob',
-        'access_settings' => 'Settings access',
-        'access_jobs'     => 'Access Jobs',
+    "permissions" => [
+        "access_jobs" => "Access Jobs",
+        "access_settings" => "Settings access"
     ],
-    'strings'     => [
-        'inject_main'         => 'Inject main script',
-        'inject_main_desc'    => 'Main script for displaying messages on framework events',
-        'inject_noty'         => 'Inject Noty.js',
-        'inject_noty_desc'    => 'Noty.js library for showing notifications.',
-        'inject_animate'      => 'Inject animate.css',
-        'inject_animate_desc' => 'Inject animation css styles',
+    "popup" => [
+        "btn" => "ici",
+        "confirm_p" => "Pour le voir cliquez",
+        "confirm_title" => "Lot en cours de création"
     ],
-    'job'         => [
-        'new'           => 'New Job',
-        'label'         => 'Job',
-        'create_title'  => 'Create Job',
-        'update_title'  => 'Edit Job',
-        'preview_title' => 'Preview Job',
-        'list_title'    => 'Manage Jobs',
+    "settings" => [
+        "messaging" => "Notifications"
     ],
-    'jobs'        => [
-        'delete_selected_confirm' => 'Supprimer le Job selectioné ?',
-        'menu_label'              => 'Jobs',
-        'return_to_list'          => 'Retour sur les Job',
-        'delete_confirm'          => 'Voulez vous vraiment supprimer le JOB ?',
-        'delete_selected_success' => 'Le JOB a bien été supprimé',
-        'delete_selected_empty'   => "Il n' y a pas de JOB à supprimer.",
-        'in_queue'                => 'En attente',
-        'in_progress'             => 'En cours',
-        'complete'                => 'Terminé',
-        'error'                   => 'Planté !',
-        'stopped'                 => 'Arreté',
-        'unknown'                 => 'Erreur inconnu',
-    ],
-    'view' => [
+    "view" => [
+        "created_at" => "Créer le",
         "key" => "Clef",
-        "value" => "Valeur",
-        'status' => "Statut",
-        'created_at' => "Créer le",
-        'last_update' => "Derniere MAJ",
-        'actualise' => "Actualiser",
-    ],
-    'popup' => [
-        'confirm_title' => "Lot en cours de création",
-        'confirm_p' => 'Pour le voir cliquez',
-        'btn' => 'ici',
-    ],
-    'listtoggle'  => [
-        'title_true'  => 'Yes',
-        'title_false' => 'No',
-        'text_true'   => 'Enabled',
-        'text_false'  => 'Disabled',
-    ],
+        "last_update" => "Derniere MAJ",
+        "status" => "Statut",
+        "value" => "Valeur"
+    ]
 ];
