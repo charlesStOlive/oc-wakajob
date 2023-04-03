@@ -57,13 +57,9 @@ class Plugin extends PluginBase
     public function registerPermissions(): array
     {
         return [
-            'waka.wakajob.access_settings' => [
+            'waka.wakajob.user' => [
                 'tab'   => 'waka.wakajob::lang.permissions.tab',
                 'label' => 'waka.wakajob::lang.permissions.access_settings',
-            ],
-            'waka.wakajob.access_jobs'     => [
-                'tab'   => 'waka.wakajob::lang.permissions.tab',
-                'label' => 'waka.wakajob::lang.permissions.access_jobs',
             ],
         ];
     }
@@ -74,36 +70,19 @@ class Plugin extends PluginBase
     public function registerNavigation(): array
     {
         return [];
-        // $showNotification = true;
-
-        // if (!UtilsSettings::get('activate_task_btn')) {
-        //     return [];
-        // }
-
-        // return [
-        //     'notification' => [
-        //         'label' => Lang::get("waka.utils::lang.menu.job_list_s"),
-        //         'url' => Backend::url('waka/wakajob/jobs'),
-        //         'icon' => 'icon-refresh',
-        //         'order' => 500,
-        //         'counter' => 0,
-        //         'permissions' => ['waka.jobList.*'],
-        //         'counterLabel' => Lang::get('waka.utils::lang.joblist.btn_counter_label'),
-        //     ],
-        // ];
     }
 
     public function registerSettings()
     {
         return [
             'notification' => [
-                'label' => Lang::get("waka.utils::lang.menu.job_list_s"),
-                'description' => Lang::get("waka.utils::lang.menu.job_list_s"),
+                'label' => Lang::get('waka.utils::lang.menu.job_list'),
+                'description' => Lang::get('waka.utils::lang.menu.job_list_s'),
                 'category' => Lang::get('waka.utils::lang.menu.settings_controle'),
                 'icon' => 'icon-refresh',
                 'url' => Backend::url('waka/wakajob/jobs'),
                 'order' => 1,
-                'permissions' => ['waka.jobList.*'],
+                'permissions' => ['waka.wakajob.*'],
                 'counterLabel' => Lang::get('waka.utils::lang.joblist.btn_counter_label'),
             ]
         ];
@@ -121,29 +100,6 @@ class Plugin extends PluginBase
                 QueueClearCommand::class,
             ]
         );
-
-        // $this->app->register(LaravelWakajobServiceProvider::class);
-
-        // $this->app->singleton(
-        //     'wakajob.route.resolver',
-        //     function () {
-        //         return new RouteResolver($this->app['config'], $this->app['log']);
-        //     }
-        // );
-
-        // $this->app->singleton(
-        //     'wakajob.backend.injector',
-        //     function () {
-        //         return new BackendInjector();
-        //     }
-        // );
-
-        // $this->app->singleton(
-        //     'wakajob.dependencyInjector',
-        //     function () {
-        //         return new DependencyInjector($this->app);
-        //     }
-        // );
     }
 
     /**
@@ -156,18 +112,6 @@ class Plugin extends PluginBase
         ];
     }
 
-    /**
-     * @return array
-     */
-    // public function registerFormWidgets()
-    // {
-    //     return [
-    //         KnobWidget::class => [
-    //             'label' => 'waka.wakajob::lang.labels.knobFormWidget',
-    //             'code' => 'knob'
-    //         ]
-    //     ];
-    // }
 
     /**
      * Plugin boot method
