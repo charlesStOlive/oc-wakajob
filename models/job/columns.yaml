@@ -27,6 +27,8 @@ columns:
     # progress_max:
     #     label: Max progress
     #     invisible: true
+    q_name:
+        label: Queue
     status:
         label: Status
         type: partial

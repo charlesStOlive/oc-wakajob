@@ -32,6 +32,11 @@ class JobManager
      */
     private $queue;
 
+     /**
+     * @var String
+     */
+    private $queueName;
+
     /**
      * This flag will remove successfully completed  DB to not clutter controller
      * @var bool
@@ -56,14 +61,15 @@ class JobManager
      * @param array             $parameters
      * @return int
      */
+    public function setQueueName($queueName) {
+        $this->queueName = $queueName;
+        return $this;
+    }
+
     public function dispatch(WakajobQueueJob $job, string $label, array $parameters = []): int
     {
         $isAdmin = false;
         $userId = null;
-        // if ($user = \Auth::getUser()) {
-        //     $userId = $user->id;
-        //     $isAdmin = false;
-        // }
         if ($user = \BackendAuth::getUser()) {
             $userId = $user->id;
             $isAdmin = true;
@@ -82,12 +88,18 @@ class JobManager
             'metadata'   => json_encode($metadata),
             'updated_at' => $now,
             'created_at' => $now,
+            'q_name' => $this->queueName ? $this->queueName : 'default',
         ];
         $jobId = $this->db->table(self::JOB_TABLE)->insertGetId(
             $insertArray
         );
         $job->assignJobId($jobId);
-        $this->queue->push($job);
+        if($this->queueName) {
+            $this->queue->pushOn($this->queueName,$job);
+        } else {
+            $this->queue->push($job);
+        }
+        
 
         return $jobId;
     }
