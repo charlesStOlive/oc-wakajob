@@ -26,8 +26,8 @@ return [
         'pluginName' => 'JOB'
     ],
     'permissions' => [
-        'access_settings' => 'Settings access',
-        'tab' => 'tab job'
+        'access_settings' => 'Accès lecteur de tâches CRON',
+        'tab' => 'Waka - CRON'
     ],
     'popup' => [
         'btn' => 'ici',
