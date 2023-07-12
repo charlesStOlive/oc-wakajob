@@ -122,13 +122,12 @@ class Plugin extends PluginBase
         /**
          * POur le bouton des jobs
          */
-        Event::listen('backend.page.beforeDisplay', function ($controller, $action, $params) {
-            //$controller->addCss('/plugins/waka/utils/assets/css/notification.css');
-            $user = \BackendAuth::getUser();
-            if ($user->hasAccess('waka.jobList.*') && UtilsSettings::get('activate_task_btn')) {
-                // $pluginUrl = url('/plugins/waka/wakajob');
-                // \Block::append('body', '<script type="text/javascript" src="' . $pluginUrl . '/assets/js/backendnotifications.js"></script>');
-            }
-        });
+        // Event::listen('backend.page.beforeDisplay', function ($controller, $action, $params) {
+        //     $user = \BackendAuth::getUser();
+        //     if ($user->hasAccess('waka.jobList.*') && UtilsSettings::get('activate_task_btn')) {
+        //         // $pluginUrl = url('/plugins/waka/wakajob');
+        //         // \Block::append('body', '<script type="text/javascript" src="' . $pluginUrl . '/assets/js/backendnotifications.js"></script>');
+        //     }
+        // });
     }
 }

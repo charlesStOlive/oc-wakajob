@@ -1,7 +1,7 @@
 <?php
 use Waka\WakaJob\Models\Job;
 
-Route::get('/api/utils/jobs', function () {
+Route::get('/api/wajajobs/jobs', function () {
     $user = BackendAuth::getUser();
     if (!$user) {
         return null;

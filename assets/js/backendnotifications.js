@@ -8,7 +8,7 @@
 
     function loadCount()
     {
-        return fetch('/api/utils/jobs/', {
+        return fetch('/api/wajajobs/jobs/', {
             header: {
                 'Content-Type': 'application/json'
             },
